@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UsersController extends Controller
 {
@@ -15,7 +16,8 @@ class UsersController extends Controller
     {
         //
         $users = User::get();
-        return view('calculators.user', compact('users'));
+        $title = "Data User";
+        return view('user.index', compact('users', 'title'));
     }
 
     /**
@@ -24,7 +26,7 @@ class UsersController extends Controller
     public function create()
     {
         $title = 'Add User';
-        return view('calculators.add-user', compact('title'));
+        return view('user.create', compact('title'));
     }
 
     /**
@@ -38,6 +40,7 @@ class UsersController extends Controller
         //     'email' => $request->email,
         //     'password' => Hash::make($request->password),
         // ]);
+        Alert::success('Done', 'Your new data has been recorded. sir!');
         return redirect()->to('user');
     }
 
@@ -56,7 +59,7 @@ class UsersController extends Controller
     {
         $title = 'Edit User';
         $user = User::find($id);
-        return view('calculators.edit-user', compact('title', 'user'));
+        return view('user.edit', compact('title', 'user'));
     }
 
     /**
@@ -78,7 +81,7 @@ class UsersController extends Controller
                 'password' => $user->password
             ]);
         }
-
+        Alert::success('Done', 'Your selected data has been changed. sir!');
         return redirect()->to('user');
     }
 
@@ -87,6 +90,17 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id)->delete();
+        Alert::success('Done', 'Your selected data has been disposed. sir!');
+
+        return redirect()->to('user');
+    }
+
+    public function delete($id)
+    {
+        $user = User::find($id)->delete();
+
+        Alert::success('Done', 'Your selected data has been disposed. sir!');
+        return redirect()->to('user');
     }
 }

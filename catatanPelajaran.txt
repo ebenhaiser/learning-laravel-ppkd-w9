@@ -12,3 +12,4 @@ method       : artisan kecakapan/kebisaan
     - delete : mengirim data dari form (delete)
 visibililasi : private, public, static
 / (slash)    : adalah default route
+

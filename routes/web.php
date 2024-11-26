@@ -1,12 +1,18 @@
 <?php
 
 use App\Http\Controllers\CalculatorController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LearningController;
+use App\Http\Controllers\loginController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [loginController::class, 'index']);
+Route::post('actionLogin', [loginController::class, 'actionLogin'])->name('actionLogin');
+
+// grouping routing setelah login
+Route::middleware(['auth'])->group(function () {
+    Route::resource('dashboard', DashboardController::class);
 });
 
 Route::get('latihan', [LearningController::class, 'index']);
@@ -22,3 +28,6 @@ Route::get('divide', [CalculatorController::class, 'divide'])->name('divide');
 Route::post('result', [CalculatorController::class, 'calculate'])->name('result');
 
 Route::resource('user', UsersController::class);
+Route::get('delete/{id}', [UsersController::class, 'delete'])->name('delete');
+
+//
