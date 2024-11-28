@@ -16,7 +16,7 @@
                     <input type="email" class="form-control" placeholder="Insert name" name="email">
                 </div>
                 <div class="form-group mb-3">
-                    <label class="form-label">Name</label>
+                    <label class="form-label">Password</label>
                     <input type="password" class="form-control" placeholder="Insert password" name="password">
                 </div>
                 <button class="btn btn-primary shadow">Submit</button>

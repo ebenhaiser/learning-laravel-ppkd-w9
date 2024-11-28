@@ -63,18 +63,18 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
-                        <div data-i18n="Account">Pelanggan</div>
+                    <a href="{{ route('customer.index') }}" class="menu-link">
+                        <div data-i18n="Account">Customers</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
-                        <div data-i18n="Notifications">Paket</div>
+                    <a href="{{ route('service.index') }}" class="menu-link">
+                        <div data-i18n="Notifications">Services</div>
                     </a>
                 </li>
                 <li class="menu-item">
                     <a href="{{ route('user.index') }}" class="menu-link">
-                        <div data-i18n="Connections">User</div>
+                        <div data-i18n="Connections">Users</div>
                     </a>
                 </li>
             </ul>
@@ -82,11 +82,11 @@
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Authentications">Transaksi</div>
+                <div data-i18n="Authentications">Transaction</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="auth-login-basic.html" class="menu-link">
+                    <a href="{{ route('trans_order.index') }}" class="menu-link">
                         <div data-i18n="Basic">Order</div>
                     </a>
                 </li>

@@ -13,3 +13,12 @@ method       : artisan kecakapan/kebisaan
 visibililasi : private, public, static
 / (slash)    : adalah default route
 
+Model :
+- ORM : object relation mapping/model
+    > LEFT JOIN
+    > RIGHT JOIN
+    > INNER JOIN
+    > OUTER JOIN
+    > ONE TO MANY
+    > MANY TO ONE
+    > MANY TO MANY

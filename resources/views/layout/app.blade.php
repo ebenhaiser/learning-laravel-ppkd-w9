@@ -77,7 +77,26 @@
       </div>
       <!-- / Layout wrapper -->
 
+      {{-- Java Script --}}
       @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
       @include('layout.inc.script')
+
+      <script>
+          //   let button = document.querySelector('.add-row');
+          $('.add-row').click(function(e) {
+              e.preventDefault();
+              //   alert('Cita-citaku menjadi softek, agar ku bisa mengokop baymax');
+              let newRow = "";
+              newRow += "<tr>";
+              newRow += "<td>a</td>";
+              newRow += "<td>b</td>";
+              newRow += "<td>c</td>";
+              newRow += "<td>d</td>";
+              newRow += "</tr>";
+
+              let tbody = $('.tbody-parent');
+              tbody.append(newRow);
+          });
+      </script>
   </body>
 </html>
