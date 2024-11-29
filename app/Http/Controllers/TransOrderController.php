@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\OrderDetail;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Service;
@@ -41,9 +43,20 @@ class TransOrderController extends Controller
      */
     public function store(Request $request)
     {
-        Customer::create($request->all());
+        $order = Order::create($request->all());
+
+        foreach ($request->id_paket as $key => $val) {
+            OrderDetail::create([
+                'id_order' => $order->id,
+                'id_service' => $request->id_paket[$key],
+                'price_service' => $request->price_service[$key],
+                'qty' => $request->qty[$key],
+                'subtotal' => $request->subtotal[$key]
+            ]);
+        }
+
         Alert::success('Done', 'Your new data has been recorded. sir!');
-        return redirect()->to('customer');
+        return redirect()->to('trans_order');
     }
 
     /**
@@ -100,5 +113,12 @@ class TransOrderController extends Controller
 
         Alert::success('Done', 'Your selected data has been disposed. sir!');
         return redirect()->to('customer');
+    }
+
+    public function getPaket($id_paket)
+    {
+        // $paket = Service::where('id', $id_paket)->first();
+        $paket = Service::find($id_paket);
+        return response()->json($paket);
     }
 }

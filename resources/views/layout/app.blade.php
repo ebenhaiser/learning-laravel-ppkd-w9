@@ -82,20 +82,65 @@
       @include('layout.inc.script')
 
       <script>
+          $('#id_paket').change(function() {
+              let id_paket = $(this).val();
+
+              $.ajax({
+                  url: '/get-paket/' + id_paket,
+                  type: 'GET',
+                  dataType: 'json',
+                  success: function(response) {
+                      $('#price').val(response.price)
+                  }
+              })
+          });
+
           //   let button = document.querySelector('.add-row');
+          //   total_price_result = 0;
           $('.add-row').click(function(e) {
+              let nama_paket = $('#id_paket').find('option:selected').text(),
+                  id_paket = $('#id_paket').val(),
+                  price = $('#price').val(),
+                  qty = $(".qty").val(),
+                  subtotal = parseInt(price) * parseInt(qty);
+
+              if (id_paket == '') {
+                  alert('Please choose which service you want to add');
+                  return false;
+              }
+
+              if (qty == "") {
+                  alert('Please enter the quantity');
+                  return false;
+              }
+
+              //   let qty_paket = $("#qty_paket").find('input').text();
               e.preventDefault();
-              //   alert('Cita-citaku menjadi softek, agar ku bisa mengokop baymax');
               let newRow = "";
               newRow += "<tr>";
-              newRow += "<td>a</td>";
-              newRow += "<td>b</td>";
-              newRow += "<td>c</td>";
-              newRow += "<td>d</td>";
+              newRow += "<td>" + nama_paket +
+                  "<input type='hidden' name='id_paket[]' class='form-control id_paket' value='" + id_paket +
+                  "''></td>";
+              newRow += "<td>" + price + "<input type='hidden' name='price_service[]' value='" + price +
+                  "'></td>";
+              newRow += "<td>" + qty + "<input type='hidden' name='qty[]' id='qty' value='" + qty + "'></td>";
+              newRow += "<td>" + subtotal +
+                  "<input type='hidden' class='subtotal' name='subtotal[]' class='form-control subtotal' value=" +
+                  subtotal + "></td>";
               newRow += "</tr>";
 
               let tbody = $('.tbody-parent');
               tbody.append(newRow);
+
+              let total_price = 0;
+              $('.subtotal').each(function() {
+                  let total_price_value = parseFloat($(this).val()) || 0;
+                  total_price += total_price_value;
+              })
+
+              $('.total-price').val(total_price);
+              $('#id_paket').val("");
+              $('.qty').val("");
           });
       </script>
   </body>

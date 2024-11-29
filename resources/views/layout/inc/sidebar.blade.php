@@ -97,7 +97,7 @@
                 </li>
                 <li class="menu-item">
                     <a href="auth-forgot-password-basic.html" class="menu-link">
-                        <div data-i18n="Basic">Laporan</div>
+                        <div data-i18n="Basic">Report</div>
                     </a>
                 </li>
             </ul>

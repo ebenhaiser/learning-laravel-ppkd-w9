@@ -28,7 +28,20 @@
                             <td>{{ $key + 1 }}</td>
                             <td>{{ $val->customer->customer_name }}</td>
                             <td>{{ $val->order_code }}</td>
-                            <td>{{ $val->address }}</td>
+                            <td>{{ $val->order_date }}</td>
+                            <td>{{ $val->order_end }}</td>
+                            @switch($val->order_status)
+                                @case(0)
+                                    {{ $order_status = 'New' }}
+                                @break
+
+                                @case(1)
+                                    {{ $order_status = 'Done' }}
+                                @break
+
+                                @default
+                            @endswitch
+                            <td>{{ $order_status }}</td>
                             <td class="d-flex gap-2">
                                 <a href="{{ route('trans_order.show', $val->id) }}" class="btn btn-icon btn-secondary">
                                     <i class="tf-icon bx bx-show bx-22px"></i>
